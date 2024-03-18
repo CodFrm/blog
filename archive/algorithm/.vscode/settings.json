@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "u_link_list.h": "c",
+        "math.h": "c",
+        "malloc.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c",
+        "cmath": "c",
+        "limits": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

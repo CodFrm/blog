@@ -1,0 +1,15 @@
+{
+  "name": "docusaurus-plugin-docs-info",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@docusaurus/core": "^3.1.1",
+    "dayjs": "^1.11.10"
+  }
+}

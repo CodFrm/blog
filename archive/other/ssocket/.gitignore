@@ -1,0 +1,24 @@
+/.idea
+/.vscode
+*.o
+*.log
+
+# executable file
+/src/main
+/test/client
+
+# automake
+/autom4te.cache
+.deps
+stamp-h1
+Makefile
+aclocal.m4
+/config.*
+configure
+Makefile.in
+install-sh
+compile
+depcomp
+missing
+/cmake-build-debug
+

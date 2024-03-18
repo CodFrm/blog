@@ -1,0 +1,11 @@
+digraph{
+    node[shape=record width=.2 height=.1]
+    1[label="|1|"]
+    2[label="|2|"]
+    node3[label="|3|"]
+    node4[label="|4|"]
+    node3->1
+    1->2
+    node3->node4
+    {rank=same; 1, 2}
+}
