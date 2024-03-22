@@ -44,10 +44,7 @@ export interface Articles {
   total: number;
 }
 
-export default function (
-  context: LoadContext,
-  options: { debug?: boolean }
-): Plugin {
+export default function (context: LoadContext, options: any): Plugin {
   const themePath = path.resolve(__dirname, "./theme");
   return {
     name: "docusaurus-plugin-docs-info",
@@ -56,15 +53,6 @@ export default function (
     },
     async contentLoaded({ content, actions, allContent }): Promise<void> {
       const { addRoute, createData, setGlobalData } = actions;
-      const isProd = process.env.NODE_ENV === "production";
-      if (!isProd && !options.debug) {
-        setGlobalData({
-          current: 1,
-          list: [],
-          total: 0,
-        });
-        return;
-      }
 
       const docsData = allContent["docusaurus-plugin-content-docs"] as {
         default: { loadedVersions: LoadedVersion };

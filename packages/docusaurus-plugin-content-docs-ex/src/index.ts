@@ -2,15 +2,19 @@ import docsPlugin, {
   PluginOptions,
   LoadedContent,
   DocMetadata as OfficialDocMetadata,
+  Options,
 } from "@docusaurus/plugin-content-docs";
-import { Plugin, LoadContext } from "@docusaurus/types";
+import {
+  Plugin,
+  LoadContext,
+  OptionValidationContext,
+} from "@docusaurus/types";
 import matter from "gray-matter";
-//@ts-ignore
-export { validateOptions } from "@docusaurus/plugin-content-docs/src/index";
 import path from "path";
-import fs from "fs";
 import simpleGit, { DefaultLogFields } from "simple-git";
 import readingTime, { ReadTimeResults } from "reading-time";
+//@ts-ignore
+import { validateOptions as officialValidateOptions } from "@docusaurus/plugin-content-docs/src/index";
 
 export type DocMetadata = OfficialDocMetadata & { detail: Detail };
 
@@ -30,6 +34,7 @@ export default async function pluginContentDocs(
     context,
     options
   )) as Plugin<LoadedContent>;
+  const isProd = process.env.NODE_ENV === "production";
 
   const themePath = path.resolve(__dirname, "./theme");
   ret.getThemePath = () => {
@@ -57,6 +62,13 @@ export default async function pluginContentDocs(
           filename: filename,
           reading_time: readingTime(meta.content),
         };
+        if (!isProd && !options.debug) {
+          // 非生产、非debug模式 直接生产假数据
+          detail.create_date = new Date();
+          detail.update_date = new Date();
+          doc.detail = detail;
+          return;
+        }
         return new Promise<void>((resolve) => {
           // 读取git log文件时间
           git.log<DefaultLogFields>(
@@ -102,5 +114,19 @@ export default async function pluginContentDocs(
     return ret;
   };
 
+  return ret;
+}
+
+export function validateOptions({
+  validate,
+  options: userOptions,
+}: OptionValidationContext<Options, PluginOptions>): PluginOptions {
+  // @ts-ignore
+  const oldDebug = userOptions.debug;
+  //@ts-ignore
+  delete userOptions.debug;
+  const ret = officialValidateOptions({ validate, options: userOptions });
+  // @ts-ignore
+  userOptions.debug = oldDebug;
   return ret;
 }

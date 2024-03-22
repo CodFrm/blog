@@ -25,7 +25,7 @@ import dayjs from "dayjs";
  - user doesn't ask to hide it with front matter
  - the markdown content does not already contain a top-level h1 heading
 */
-function useSyntheticTitle(): string | null {
+export function useSyntheticTitle(): string | null {
   const { metadata, frontMatter, contentTitle } = useDoc();
   const shouldRender =
     !frontMatter.hide_title && typeof contentTitle === "undefined";
