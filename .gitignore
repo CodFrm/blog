@@ -21,4 +21,5 @@ yarn-error.log*
 
 my-website
 .vscode
-lib/
+.idea
+lib
