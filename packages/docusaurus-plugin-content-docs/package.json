@@ -1,5 +1,5 @@
 {
-  "name": "docusaurus-plugin-docs-info",
+  "name": "docusaurus-plugin-content-docs",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "@docusaurus/core": "^3.1.1",
+    "@docusaurus/plugin-content-docs": "^3.1.1",
     "dayjs": "^1.11.10",
-    "reading-time": "^1.5.0"
+    "reading-time": "^1.5.0",
+    "simple-git": "^3.22.0"
   }
 }

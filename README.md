@@ -1,48 +1,46 @@
-# BLOG
-
-好记性不如烂笔头，自从工作以后写得越来越少了，在大学时还时不时的写点，现在回顾起来，感觉不到工作后的任何积累，写作水平也比以前差了不少，实在惭愧。
-
-自前段时间看了大佬们的博客，下定决心重新开写，重新整理了一下过往的文章，~~黑历史去掉~~，然后重新挑选了一个博客程序，你感兴趣的话可以看看[blog](https://github.com/codfrm/blog)仓库，这个仓库之前也有一些代码记录，已经移动到了[archive](./archive)目录下。
-
-整理时，回头看之前的文章，能感受到自己的一些技术进步，也能看到之前的一些感悟和中二（~~黑历史~~），从当年的小白变成了现在的中白，等以后成为了老白，再回头看看，应该也会有不一样的感悟。
-
-我将以前的一些我觉得有意义的文章搬到了这里，日期应该都是 **2024 年 03 月 17 日**，重新进行了分类：[`DEV`](./docs/dev/)编程语言、软件开发；[`OPS`](./docs/ops/)服务器运维、工具分享；[`随笔`](./docs/note/)日常生活、感悟。
-
-写博客其实也不止是为了记录，更多的是为了学习、为了分享、为了交流，也是为了能够在互联网上留下一片足迹，希望能够坚持下去。
-
-如果你对本博客程序有兴趣，可以看看我这篇文章：[我为什么换掉 Wordpress 而选择 Docusaurus？](./docs/note/为什么换掉Wordpress.md)
-如果你有其它问题，欢迎在文章下面留言，或者在[GitHub](https://github.com/codfrm/blog)上提 issue，我会尽快回复。
+<h1 align="center"> 王一之的个人博客 </h1>
+<p align="center">分享知识，记录生活，认识朋友</p>
 
 ---
 
-```go title="main.go"
-fmt.Println("Hello, World!")
+这里是我的个人博客，使用 docusaurus 构建，主要用于记录一些技术知识，生活感悟，以及一些有趣的事情。欢迎大家来访，也欢迎大家留言，一起交流。
+
+---
+
+> 如果你想基于本仓库部署自己的博客，可以查看下面的内容。关于本博客对 docusaurus 的一些修改，你可以查看[我为什么换掉 Wordpress 选择 Docusaurus？](./docs/note//为什么换掉Wordpress.md)
+
+## 运行
+
+你可以直接克隆本仓库，然后在本地运行。
+
+```bash
+# 克隆与进入仓库
+git clone https://github.com/codfrm/blog.git
+cd blog
+# 安装依赖
+npm i
+# 运行
+npm start
 ```
 
-```ts title="main.ts"
-console.log("Hello, World!");
-```
+## 目录结构
 
-```php title="main.php"
-echo "Hello, World!";
-```
+你需要根据自己的需求来对一些文件进行修改，一些没有标注出来的文件可能是与 docuasaurus 相关的一些配置文件，你可以根据官方文档来进行修改。
 
-```python title="main.py"
-print('Hello, World!')
-```
+- archive 我的个人归档，你需要将它删除
+- docs 博客文章，你的文章需要放在这里
+- packages 一些自定义的插件
+- src
+  - components/Comments/index.tsx 评论组件，使用[Giscus](https://giscus.app/zh-CN)构建 如果你使用的话，你需要修改里面的配置
+  - pages/index.tsx 首页文件
+- docuasaurus.config.js docuasaurus 的配置文件，包含了博客的标题、描述等内容，你需要根据自己的需求来修改
+- sidebars.js 侧边栏配置文件，你需要根据自己的需求来修改
 
-```c title="main.c"
-printf("Hello, World!");
-```
+## 部署
 
-```cpp title="main.cpp"
-std::cout << "Hello, World!";
-```
+构建完成后，将构建好的静态文件部署到你的服务器上即可。你也可以选择 Github Pages、Vercel、Netlify 等等。
 
-```bash title="main.sh"
-echo "Hello, World!"
-```
-
-```docker title="Dockerfile"
-RUN echo "Hello, World!"
+```bash
+# 构建静态文件
+npm run build
 ```

@@ -3,6 +3,9 @@ import fs from "fs";
 import simpleGit, { DefaultLogFields } from "simple-git";
 import matter from "gray-matter";
 import { LoadContext, Plugin } from "@docusaurus/types";
+import readingTime, { ReadTimeResults } from "reading-time";
+import { LoadedVersion } from "@docusaurus/plugin-content-docs";
+import { DocMetadata } from "docusaurus-plugin-content-docs/src";
 
 async function readDir(pathName: string) {
   return new Promise<string[]>((resolve) => {
@@ -32,12 +35,13 @@ async function readDir(pathName: string) {
 export interface Article {
   filename: string;
   title: string;
+  reading_time: ReadTimeResults;
   create_date?: Date;
   update_date?: Date;
 }
 
 export interface Articles {
-  list: Article[];
+  list: DocMetadata[];
   current: number;
   total: number;
 }
@@ -52,7 +56,7 @@ export default function (
     getThemePath() {
       return themePath;
     },
-    async contentLoaded({ content, actions }): Promise<void> {
+    async contentLoaded({ content, actions, allContent }): Promise<void> {
       const { addRoute, createData, setGlobalData } = actions;
       const isProd = process.env.NODE_ENV === "production";
       if (!isProd && !options.debug) {
@@ -64,70 +68,22 @@ export default function (
         return;
       }
 
-      // 读取docs下文件
-      const files = await readDir("./docs");
-      const git = simpleGit();
-      const articles = [];
-
-      await Promise.all(
-        files.map((file) => {
-          return new Promise<void>((resolve) => {
-            if (
-              !(
-                file.startsWith("_") ||
-                file.endsWith(".md") ||
-                file.endsWith(".mdx")
-              )
-            ) {
-              return resolve();
-            }
-            // 读取文件内容, 查看标题, 查看日期
-            const meta = matter.read(file);
-            const article: Article = {
-              filename: file,
-              title:
-                meta.data["title"] ||
-                path.basename(file).split(".").slice(0, -1).join("."),
-            };
-            // 读取git log文件时间
-            git.log<DefaultLogFields>(
-              {
-                format: "%ad",
-                file: file,
-              },
-              (_, data) => {
-                if (meta.data["create_date"]) {
-                  article.create_date = new Date(meta.data["create_date"]);
-                } else {
-                  article.create_date = data.all.length
-                    ? new Date(data.all[data.all.length - 1].date)
-                    : new Date();
-                }
-                if (meta.data["update_date"]) {
-                  article.update_date = new Date(meta.data["update_date"]);
-                } else {
-                  article.update_date = data.latest
-                    ? new Date(data.latest.date)
-                    : new Date();
-                }
-                articles.push(article);
-                resolve();
-              }
-            );
-          });
-        })
-      );
-
-      // 20篇为一页, 创建时间由新到旧
-      articles.sort((a, b) => {
-        return b.create_date.getTime() - a.create_date.getTime();
+      const docsData = allContent["docusaurus-plugin-content-docs"] as {
+        default: { loadedVersions: LoadedVersion };
+      };
+      let docs = docsData.default.loadedVersions[0].docs as DocMetadata[];
+      // 文章时间排序
+      docs = docs.sort((a, b) => {
+        //@ts-ignore
+        return b.detail.create_date.getTime() - a.detail.create_date.getTime();
       });
 
+      // 20篇为一页, 创建时间由新到旧
       const pageSize = 21;
       const latest = {
         current: 1,
-        list: articles.slice(0, pageSize),
-        total: articles.length,
+        list: docs.slice(0, pageSize),
+        total: docs.length,
       };
       setGlobalData(latest);
 
@@ -144,14 +100,14 @@ export default function (
         exact: true,
       });
 
-      for (let i = 1; i < Math.ceil(articles.length / pageSize); i++) {
+      for (let i = 1; i < Math.ceil(docs.length / pageSize); i++) {
         const page = i + 1;
         const pageData = await createData(
           `timeline-${page}.json`,
           JSON.stringify({
             current: i + 1,
-            list: articles.slice(i * pageSize, (i + 1) * pageSize),
-            total: articles.length,
+            list: docs.slice(i * pageSize, (i + 1) * pageSize),
+            total: docs.length,
           })
         );
         addRoute({

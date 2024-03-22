@@ -24,7 +24,18 @@ const config: Config = {
 
   plugins: [
     ["@gracefullight/docusaurus-plugin-tailwind", {}],
-    ["docusaurus-plugin-docs-info", {}],
+    [
+      "docusaurus-plugin-content-docs",
+      {
+        routeBasePath: "/",
+        sidebarPath: "./sidebars.ts",
+        // Please change this to your repo.
+        // Remove this to remove the "edit this page" links.
+        editUrl: "https://github.com/CodFrm/blog/edit/main",
+        showLastUpdateTime: true,
+      },
+    ],
+    ["docusaurus-plugin-docs-info", { debug: true }],
   ],
 
   // Even if you don't use internationalization, you can use this field to set
@@ -39,14 +50,15 @@ const config: Config = {
     [
       "classic",
       {
-        docs: {
-          routeBasePath: "/",
-          sidebarPath: "./sidebars.ts",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/codfrm/blog",
-          showLastUpdateTime: true,
-        },
+        docs: false,
+        // docs: {
+        //   routeBasePath: "/",
+        //   sidebarPath: "./sidebars.ts",
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl: "https://github.com/codfrm/blog",
+        //   showLastUpdateTime: true,
+        // },
         theme: {
           customCss: "./src/css/custom.css",
         },

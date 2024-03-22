@@ -1,44 +1,20 @@
-import { Article } from "../..";
 import { FullVersion } from "@docusaurus/plugin-content-docs/lib/types.d.ts";
-import { DocMetadata } from "@docusaurus/plugin-content-docs";
 import { usePluginData } from "@docusaurus/useGlobalData";
 import dayjs from "dayjs";
 import Link from "@docusaurus/Link";
+import { DocMetadata } from "docusaurus-plugin-content-docs/src";
 
 const ArticleList: React.FC<{
-  list: Article[];
+  list: DocMetadata[];
 }> = ({ list: data }) => {
   const docsData = usePluginData("docusaurus-plugin-content-docs") as {
     versions: FullVersion[];
   };
-  const list: Array<Array<Article>> = [];
-  const map: Map<string, DocMetadata> = new Map();
-  for (let i = 0; i < docsData.versions[0].docs.length; i++) {
-    // @ts-ignore
-    map.set(docsData.versions[0].docs[i].path, docsData.versions[0].docs[i]);
-  }
+  const list: Array<Array<DocMetadata>> = [];
   // 一行两个
   const num = 3;
   for (let i = 0; i < data.length && i < 8; i += num) {
     list.push(data.slice(i, i + num));
-  }
-  // 构建与docs的连接
-  for (let i = 0; i < list.length; i++) {
-    for (let j = 0; j < list[i].length; j++) {
-      const val = list[i][j];
-      let path = val.filename.replace(/\.(md|mdx)/, "").substring(4);
-      if (
-        val.filename.endsWith("index.md") ||
-        val.filename.endsWith("index.mdx")
-      ) {
-        path = path.split("/").slice(0, -1).join("/") + "/";
-      }
-      const doc = map.get(path);
-      if (doc) {
-        // @ts-ignore
-        list[i][j].link = doc.path;
-      }
-    }
   }
 
   return (
@@ -56,8 +32,7 @@ const ArticleList: React.FC<{
               >
                 <div className="card__header">
                   <Link
-                    // @ts-ignore
-                    to={val.link}
+                    to={val.permalink}
                     className="text-left"
                     style={{
                       display: "block",
@@ -79,7 +54,9 @@ const ArticleList: React.FC<{
                       fontSize: "12px",
                     }}
                   >
-                    <p>{dayjs(val.create_date).format("YYYY年MM月DD日")}</p>
+                    <p>
+                      {dayjs(val.detail.create_date).format("YYYY年MM月DD日")}
+                    </p>
                     <Link
                       // @ts-ignore
                       to={val.link}

@@ -1,5 +1,5 @@
 import { usePluginData } from "@docusaurus/useGlobalData";
-import { Articles } from "../..";
+import { Articles } from "docusaurus-plugin-docs-info";
 import ArticleList from "../ArticleList";
 import Link from "@docusaurus/Link";
 

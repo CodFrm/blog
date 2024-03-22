@@ -1,8 +1,8 @@
 import Layout from "@theme/Layout";
-import { Article, Articles } from "../..";
-import ArticleList from "../../components/ArticleList";
+import { Article, Articles } from "docusaurus-plugin-docs-info";
 import { Pagination } from "antd";
 import Link from "@docusaurus/Link";
+import ArticleList from "../../components/ArticleList";
 
 export interface TimelineProps {
   articles: Articles;
@@ -30,8 +30,11 @@ function Timeline({ articles }: TimelineProps) {
             total={articles.total}
             pageSize={20}
             showSizeChanger={false}
+            style={{
+              marginBottom: "10px",
+            }}
             itemRender={(page, type, el) => {
-              if (!page) {
+              if (type !== "page") {
                 return el;
               }
               if (page === 1) {

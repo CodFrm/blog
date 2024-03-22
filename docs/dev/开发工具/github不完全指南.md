@@ -132,7 +132,7 @@ git push origin master
 
 #### Action
 
-是 github 最近推出的一项 CI/CD 服务, 具体可以去看我原来的文章:[github action 入门](../../ops/CI&CD/github-actions-入门)
+是 github 最近推出的一项 CI/CD 服务, 具体可以去看我原来的文章:[github action 入门](../../ops/ci&cd/github-actions-入门)
 
 #### project
 
