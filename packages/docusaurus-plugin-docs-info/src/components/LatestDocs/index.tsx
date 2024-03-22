@@ -13,7 +13,7 @@ function LatestDocs() {
         gap: "1rem",
       }}
     >
-      <ArticleList list={data.list} />
+      <ArticleList list={data.list.slice(0, 9)} />
       <div
         className="w-full"
         style={{

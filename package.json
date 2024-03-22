@@ -29,7 +29,7 @@
     "antd": "^5.15.2",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
-    "docusaurus-plugin-content-docs": "^1.0.0",
+    "docusaurus-plugin-content-docs-ex": "^1.0.0",
     "docusaurus-plugin-docs-info": "^1.0.0",
     "gray-matter": "^4.0.3",
     "prism-react-renderer": "^2.3.0",

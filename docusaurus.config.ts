@@ -25,7 +25,7 @@ const config: Config = {
   plugins: [
     ["@gracefullight/docusaurus-plugin-tailwind", {}],
     [
-      "docusaurus-plugin-content-docs",
+      "docusaurus-plugin-content-docs-ex",
       {
         routeBasePath: "/",
         sidebarPath: "./sidebars.ts",
@@ -97,12 +97,12 @@ const config: Config = {
           position: "right",
           label: "Dev",
           to: "/dev",
-          // items: [
-          //   {
-          //     to: "/dev/golang",
-          //     label: "Golang",
-          //   },
-          // ],
+          items: [
+            {
+              to: "/dev/language/golang",
+              label: "Golang",
+            },
+          ],
         },
         {
           type: "docSidebar",

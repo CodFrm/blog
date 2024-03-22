@@ -1,11 +1,9 @@
 import path from "path";
 import fs from "fs";
-import simpleGit, { DefaultLogFields } from "simple-git";
-import matter from "gray-matter";
 import { LoadContext, Plugin } from "@docusaurus/types";
-import readingTime, { ReadTimeResults } from "reading-time";
+import { ReadTimeResults } from "reading-time";
 import { LoadedVersion } from "@docusaurus/plugin-content-docs";
-import { DocMetadata } from "docusaurus-plugin-content-docs/src";
+import { DocMetadata } from "docusaurus-plugin-content-docs-ex/src";
 
 async function readDir(pathName: string) {
   return new Promise<string[]>((resolve) => {
