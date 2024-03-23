@@ -3,7 +3,7 @@ title: 我为什么换掉Wordpress选择Docusaurus？
 keyword: [笔记, 博客]
 ---
 
-## 为什么换掉Wordpress？
+## 为什么换掉 Wordpress？
 
 在此之前，我一直使用 Wordpress 来做我的博客，最近准备重新开始写，为什么决定换掉它呢？
 
@@ -54,7 +54,7 @@ Docusaurus 是有 blog 功能的，但是 blog 不能支持左侧的目录树，
 - 增加 Docs 文章时间排序
 - 接入 giscus 评论
 - 接入 Google Analytics 统计
-- 增加了 Markdown lint(vscode 插件)
+- 增加了 Markdown lint 校验与格式化(vscode 插件)
 
 后续或许还会写一个后端，来实现其他更多的功能。
 
