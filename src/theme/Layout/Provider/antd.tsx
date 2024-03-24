@@ -6,9 +6,10 @@ export default function AntdProvider({ children }) {
   return (
     <ConfigProvider
       theme={{
-        algorithm: colorMode.isDarkTheme
-          ? theme.darkAlgorithm
-          : theme.defaultAlgorithm,
+        algorithm:
+          colorMode.colorMode == "dark"
+            ? theme.darkAlgorithm
+            : theme.defaultAlgorithm,
       }}
     >
       {children}

@@ -9,12 +9,11 @@ export default function HeadingWrapper(props) {
   const syntheticTitle = useSyntheticTitle();
   const doc = useDoc();
   const detail = (doc.metadata as any).detail as Detail;
-
   return (
     <>
       <Heading {...props}>
         {props.children}
-        {detail && !syntheticTitle && (
+        {detail && !syntheticTitle && props.as.toString() === "h1" && doc.contentTitle==props.children && (
           <span
             style={{
               display: "block",

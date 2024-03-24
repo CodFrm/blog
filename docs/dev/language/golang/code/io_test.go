@@ -3,11 +3,40 @@ package code
 import (
 	"bufio"
 	"bytes"
+	"compress/gzip"
 	"crypto/md5"
 	"crypto/sha1"
 	"io"
 	"testing"
 )
+
+type WrapReader struct {
+	len int
+	r   io.Reader
+}
+
+func (w *WrapReader) Read(p []byte) (int, error) {
+	n, err := w.r.Read(p)
+	w.len += n
+	return n, err
+}
+
+func TestReader(t *testing.T) {
+	file := bytes.NewBuffer([]byte("hello world"))
+	wr := WrapReader{len: 0, r: file}
+	_, _ = io.Copy(io.Discard, &wr)
+	t.Logf("文件长度: %d\n", wr.len)
+}
+
+func TestGzip(t *testing.T) {
+	file := bytes.NewBuffer([]byte("hello world"))
+	buf := bytes.NewBuffer(nil)
+	w := gzip.NewWriter(buf)
+	_, _ = io.Copy(w, file)
+	t.Logf("不Close文件长度: %d\n", buf.Len())
+	w.Close()
+	t.Logf("压缩后文件长度: %d\n", buf.Len())
+}
 
 func TestIOHash(t *testing.T) {
 	file := bytes.NewBuffer([]byte("hello world"))

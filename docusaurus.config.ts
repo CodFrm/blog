@@ -4,8 +4,8 @@ import type * as Preset from "@docusaurus/preset-classic";
 import docsToBlog from "./packages/docusaurus-plugin-docs-info/src";
 
 const config: Config = {
-  title: "王一之",
-  tagline: "王一之的个人博客：分享知识，记录生活，认识朋友",
+  title: "一知",
+  tagline: "王一之的个人博客：分享知识，认识朋友",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -77,7 +77,7 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "王一之的博客",
+      title: "一知",
       logo: {
         alt: "Logo",
         src: "img/avatar.png",

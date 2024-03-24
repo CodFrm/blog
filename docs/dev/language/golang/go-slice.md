@@ -172,7 +172,7 @@ func ModifySlice(slice []int) {
 
 在1.18之前，切片的扩容是原来的2倍，但是当容量超过1024时，每次容量变成原来的1.25倍，直到大于期望容量。在1.18后更换了新的机制：
 
-<https://github.com/golang/go/blob/27f41bb15391668fa8ba18561efe364bab9b8312/src/runtime/slice.go#L267>
+[src/runtime/slice.go#L267](https://github.com/golang/go/blob/27f41bb15391668fa8ba18561efe364bab9b8312/src/runtime/slice.go#L267)
 
 - 当新切片>旧切片\*2时，直接安装新切片容量计算
 - 如果旧切片\<256，新切片容量为旧切片\*2
@@ -195,7 +195,7 @@ func TestCap(t *testing.T) {
 
 至于实际的结果为什么没有和上述说的一样，可以看到，在`nextslicecap`计算出容量后续，还有对`newcap`的一系列操作，这是内存对齐的一系列计算。
 
-<https://github.com/golang/go/blob/27f41bb15391668fa8ba18561efe364bab9b8312/src/runtime/slice.go#L188>
+[src/runtime/slice.go#L188](https://github.com/golang/go/blob/27f41bb15391668fa8ba18561efe364bab9b8312/src/runtime/slice.go#L188)
 
 逻辑比较复杂，可以进入调试模式跟踪逻辑，这里就不多展开了
 

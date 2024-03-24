@@ -36,11 +36,6 @@ export default async function pluginContentDocs(
   )) as Plugin<LoadedContent>;
   const isProd = process.env.NODE_ENV === "production";
 
-  const themePath = path.resolve(__dirname, "./theme");
-  ret.getThemePath = () => {
-    return themePath;
-  };
-
   const warpLoadContent = ret.loadContent;
   ret.loadContent = async () => {
     const ret = await warpLoadContent();
