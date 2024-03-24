@@ -37,6 +37,15 @@ const config: Config = {
     ],
     ["docusaurus-plugin-docs-info", { debug: true }],
   ],
+  markdown: {
+    preprocessor({ filePath, fileContent }) {
+      // 去掉第一行的#标题，因为不去掉的话会导致创建时间和阅读时间的错误
+      if (fileContent.startsWith("# ")) {
+        return fileContent.replace(/^# (.+?)[\r\n]+/, "");
+      }
+      return fileContent;
+    },
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
