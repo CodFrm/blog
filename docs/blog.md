@@ -4,8 +4,6 @@ hide_title: true
 sidebar_position: 1
 ---
 
-# BLOG
-
 好记性不如烂笔头，自从工作以后写得越来越少了，在大学时还时不时的写点，现在回顾起来，感觉不到工作后的任何积累，写作水平也比以前差了不少，实在惭愧。
 
 自前段时间看了大佬们的博客，下定决心重新开写，重新整理了一下过往的文章，~~黑历史去掉~~，然后重新挑选了一个博客程序，你感兴趣的话可以看看[blog](https://github.com/codfrm/blog)仓库，这个仓库之前也有一些代码记录，已经移动到了[archive](https://github.com/CodFrm/blog/tree/main/archive)目录下。

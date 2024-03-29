@@ -145,7 +145,7 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       // https://prismjs.com/download.html
-      additionalLanguages: ["php", "bash", "docker"],
+      additionalLanguages: ["php", "bash", "docker", "json"],
     },
   } satisfies Preset.ThemeConfig,
 };
