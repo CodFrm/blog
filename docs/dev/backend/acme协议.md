@@ -103,7 +103,7 @@ func (c *Client) DNS01ChallengeRecord(token string) string {
 
 > [Applying for Certificate Issuance](https://datatracker.ietf.org/doc/html/rfc8555#section-7.4)
 
-当我们的订单变成`valid`状态后，我们就可以请求颁发证书了，通过`finalize`URL 来请求颁发证书，ACME 服务商会返回我们的证书。其中必须要携带上我们的 CSR 信息。
+当我们的订单变成`valid`状态后，我们就可以请求颁发证书了，通过`finalize`URL 来请求颁发证书，ACME 服务商会返回我们的证书链接。其中必须要携带上我们的 CSR 信息。
 
 申请成功后，会返回一个`certificate`URL
 
@@ -460,7 +460,9 @@ func (c *Client) GetCertificate(url string) ([]byte, error) {
 
 ## 测试
 
-我们可以写一个方法来测试一下上面的流程是否可行，代码我就不贴这里了，大家可以到这里查看：[acme_test.go](https://github.com/CodFrm/dns-kit/blob/6dcac9b084a8487188af9eb58c5e411b489cedbe/pkg/acme/acme_test.go)
+我们可以写一个方法来测试一下上面的流程是否可行，代码我就不贴这里了，大家可以到这里查看：[acme_test.go](https://github.com/CodFrm/dns-kit/blob/6dcac9b084a8487188af9eb58c5e411b489cedbe/pkg/acme/acme_test.go)。
+
+这是最开始与本文写的一致的一个版本，后续会有所改动，可以回到主分支查看。
 
 ## 结尾
 
