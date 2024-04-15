@@ -28,4 +28,4 @@ cat /proc/sys/fs/inotify/max_user_watches
 
 ## 参考
 
-[https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers](https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers)
+[https://github.com/guard/listen/blob/master/README.md#increasing-the-amount-of-inotify-watchers](https://github.com/guard/listen/blob/master/README.md#increasing-the-amount-of-inotify-watchers)
