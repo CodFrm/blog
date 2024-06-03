@@ -26,7 +26,7 @@ Tampermonkey 并没有放弃这个功能，我不知道它是如何实现的，�
 
 ## Userscript 和后台脚本
 
-mv3 引入了两个新的 API：`[chrome.userScripts](https://developer.chrome.com/docs/extensions/reference/api/userScripts?hl=zh-cn)`和`[chrome.offscreen](https://developer.chrome.com/docs/extensions/reference/api/offscreen?hl=zh-cn)`，对于实现 Userscript 和后台脚本的功能上来说，更方便了，而且 chrome.userScripts 甚至可以让脚本在页面加载前进行注入，感觉又可以诞生一些新的玩法。但是必须要求用户开启开发者模式，这个实在是太难接受了。而且这个 API 可以突破 CSP 限制，在此之前是直接使用 webRequest API 将 CSP 策略移除，这样是更加安全的。
+mv3 引入了两个新的 API：[chrome.userScripts](https://developer.chrome.com/docs/extensions/reference/api/userScripts?hl=zh-cn)和[chrome.offscreen](https://developer.chrome.com/docs/extensions/reference/api/offscreen?hl=zh-cn)，对于实现 Userscript 和后台脚本的功能上来说，更方便了，而且 chrome.userScripts 甚至可以让脚本在页面加载前进行注入，感觉又可以诞生一些新的玩法。但是必须要求用户开启开发者模式，这个实在是太难接受了。而且这个 API 可以突破 CSP 限制，在此之前是直接使用 webRequest API 将 CSP 策略移除，这样是更加安全的。
 
 现在脚本的注入完全依赖这个 API，而不需要自己管理了，这个算是一个好消息，但是这样的话对于@match/@include 的表达式会产生一些影响。
 
