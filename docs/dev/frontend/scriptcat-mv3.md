@@ -16,6 +16,8 @@
 
 由于这个变化，脚本猫的很多功能几乎全部需要重写，通信方面也要重新设计，一些功能也要重新考虑。虽然说都有替代方案，但还是有些烦躁。
 
+另外我也还没有接触过 Service Worker，还需要学习一下，开发过程中可能还会遇到一些问题。
+
 ## DNR
 
 其次就是围绕着网络请求修改方面的，Manifest V2，可以使用[`webRequest API`](https://developer.chrome.com/docs/extensions/reference/api/webRequest?hl=zh-cn)，可以非常自由的修改网络请求，然而 V3 版本这个 API 被移除了，取而代之的是 [`declarativeNetRequest API`](https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest?hl=zh-cn),使用的是声明式的规则列表，甚至还有条数限制。这直接影响了 GM_xhr 的相关功能，例如：Forbidden header、匿名 cookie、set-cookie 等。

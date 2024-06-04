@@ -51,7 +51,7 @@ export default function (context: LoadContext, options: any): Plugin {
     getThemePath() {
       return themePath;
     },
-    async contentLoaded({ content, actions, allContent }): Promise<void> {
+    async allContentLoaded({ actions, allContent }): Promise<void> {
       const { addRoute, createData, setGlobalData } = actions;
 
       const docsData = allContent["docusaurus-plugin-content-docs"] as {
