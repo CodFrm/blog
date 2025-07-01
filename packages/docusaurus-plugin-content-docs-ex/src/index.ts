@@ -98,16 +98,16 @@ export default async function pluginContentDocs(
     return ret;
   };
 
-  const warpContentLoaded = ret.contentLoaded;
-
-  ret.contentLoaded = async ({ content, actions, allContent }) => {
-    const ret = await warpContentLoaded({
-      content,
-      actions,
-      allContent,
-    });
-    return ret;
-  };
+  const warpAllContentLoaded = ret.allContentLoaded;
+  if (warpAllContentLoaded) {
+    ret.allContentLoaded = async ({ actions, allContent }) => {
+      const ret = await warpAllContentLoaded({
+        actions,
+        allContent,
+      });
+      return ret;
+    };
+  }
 
   return ret;
 }

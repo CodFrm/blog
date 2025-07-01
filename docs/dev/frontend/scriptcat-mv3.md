@@ -16,6 +16,8 @@
 
 由于这个变化，脚本猫的很多功能几乎全部需要重写，通信方面也要重新设计，一些功能也要重新考虑。虽然说都有替代方案，但还是有些烦躁。
 
+另外我也还没有接触过 Service Worker，还需要学习一下，开发过程中可能还会遇到一些问题。
+
 ## DNR
 
 其次就是围绕着网络请求修改方面的，Manifest V2，可以使用[`webRequest API`](https://developer.chrome.com/docs/extensions/reference/api/webRequest?hl=zh-cn)，可以非常自由的修改网络请求，然而 V3 版本这个 API 被移除了，取而代之的是 [`declarativeNetRequest API`](https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest?hl=zh-cn),使用的是声明式的规则列表，甚至还有条数限制。这直接影响了 GM_xhr 的相关功能，例如：Forbidden header、匿名 cookie、set-cookie 等。
@@ -26,7 +28,7 @@ Tampermonkey 并没有放弃这个功能，我不知道它是如何实现的，�
 
 ## Userscript 和后台脚本
 
-mv3 引入了两个新的 API：`[chrome.userScripts](https://developer.chrome.com/docs/extensions/reference/api/userScripts?hl=zh-cn)`和`[chrome.offscreen](https://developer.chrome.com/docs/extensions/reference/api/offscreen?hl=zh-cn)`，对于实现 Userscript 和后台脚本的功能上来说，更方便了，而且 chrome.userScripts 甚至可以让脚本在页面加载前进行注入，感觉又可以诞生一些新的玩法。但是必须要求用户开启开发者模式，这个实在是太难接受了。而且这个 API 可以突破 CSP 限制，在此之前是直接使用 webRequest API 将 CSP 策略移除，这样是更加安全的。
+mv3 引入了两个新的 API：[chrome.userScripts](https://developer.chrome.com/docs/extensions/reference/api/userScripts?hl=zh-cn)和[chrome.offscreen](https://developer.chrome.com/docs/extensions/reference/api/offscreen?hl=zh-cn)，对于实现 Userscript 和后台脚本的功能上来说，更方便了，而且 chrome.userScripts 甚至可以让脚本在页面加载前进行注入，感觉又可以诞生一些新的玩法。但是必须要求用户开启开发者模式，这个实在是太难接受了。而且这个 API 可以突破 CSP 限制，在此之前是直接使用 webRequest API 将 CSP 策略移除，这样是更加安全的。
 
 现在脚本的注入完全依赖这个 API，而不需要自己管理了，这个算是一个好消息，但是这样的话对于@match/@include 的表达式会产生一些影响。
 
