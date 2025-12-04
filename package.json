@@ -22,7 +22,6 @@
     "@docusaurus/plugin-content-docs": "^3.4.0",
     "@docusaurus/plugin-sitemap": "^3.4.0",
     "@docusaurus/preset-classic": "^3.4.0",
-    "@giscus/react": "^3.0.0",
     "@gracefullight/docusaurus-plugin-tailwind": "^1.0.1",
     "@iconify/react": "^4.1.1",
     "@mdx-js/react": "^3.0.0",
